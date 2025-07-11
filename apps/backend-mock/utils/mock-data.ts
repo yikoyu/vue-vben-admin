@@ -1,3 +1,5 @@
+import { fakerZH_CN as faker } from '@faker-js/faker';
+
 export interface UserInfo {
   id: number;
   password: string;
@@ -17,14 +19,14 @@ export const MOCK_USERS: UserInfo[] = [
     id: 0,
     password: '123456',
     realName: 'Vben',
-    roles: ['super'],
+    roles: ['super', 'System', 'SysBackendMenu', 'SysUser', 'SysRole'],
     username: 'vben',
   },
   {
     id: 1,
     password: '123456',
     realName: 'Admin',
-    roles: ['admin'],
+    roles: ['admin', 'System', 'SysUser', 'SysRole'],
     username: 'admin',
     homePath: '/workspace',
   },
@@ -419,3 +421,175 @@ export const TIME_ZONE_OPTIONS: TimezoneOption[] = [
     timezone: 'Asia/Seoul',
   },
 ];
+
+export const MOCK_MENUS_TREE_DETAIL = [
+  {
+    id: '1',
+    item: {
+      code: 'System',
+      name: '系统管理',
+      permission: '',
+      pid: '0',
+      sort: 0,
+      type: 1,
+      visible: 'Y',
+    },
+    name: '系统管理',
+    pid: '0',
+    children: [
+      {
+        id: '1778685030944481280',
+        pid: '1',
+        name: '权限菜单配置',
+        item: {
+          code: 'SysBackendMenu',
+          name: '权限菜单配置',
+          permission: '',
+          pid: '0',
+          sort: -1,
+          type: 1,
+          visible: 'N',
+        },
+        children: [],
+      },
+      {
+        id: '9',
+        pid: '1',
+        name: '管理员管理',
+        item: {
+          code: 'SystemUser',
+          name: '管理员管理',
+          pid: '1',
+          sort: 0,
+          type: 1,
+          visible: 'Y',
+        },
+        children: [
+          {
+            id: '142',
+            pid: '9',
+            name: '管理员新增',
+            item: {
+              code: 'UserAccountSave',
+              name: '管理员新增',
+              permission: 'user-account:save',
+              pid: '9',
+              sort: 0,
+              type: 2,
+              visible: 'N',
+            },
+            children: [],
+          },
+          {
+            id: '143',
+            pid: '9',
+            name: '管理员编辑',
+            item: {
+              code: 'UserAccountUpdate',
+              name: '管理员编辑',
+              permission: 'user-account:update',
+              pid: '9',
+              sort: 0,
+              type: 2,
+              visible: 'N',
+            },
+            children: [],
+          },
+        ],
+      },
+      {
+        id: '8',
+        pid: '1',
+        name: '角色管理',
+        item: {
+          code: 'SystemRole',
+          name: '角色管理',
+          pid: '1',
+          sort: 1,
+          type: 1,
+          visible: 'Y',
+        },
+        children: [
+          {
+            id: '137',
+            pid: '8',
+            name: '角色新增',
+            item: {
+              code: 'SysRoleAdd',
+              name: '角色新增',
+              permission: 'sysRole:add',
+              pid: '8',
+              sort: 0,
+              type: 2,
+              visible: 'N',
+            },
+            children: [],
+          },
+          {
+            id: '138',
+            pid: '8',
+            name: '角色删除',
+            item: {
+              code: 'SysRoleDelete',
+              name: '角色删除',
+              permission: 'sysRole:delete',
+              pid: '8',
+              sort: 0,
+              type: 2,
+              visible: 'N',
+            },
+            children: [],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+export const MOCK_MENUS_PARTENTTREE = [
+  {
+    id: '1',
+    name: '系统管理',
+    pid: '0',
+    children: [
+      {
+        id: '1778685030944481280',
+        pid: '0',
+        name: '权限菜单配置',
+        children: [],
+      },
+      {
+        id: '9',
+        pid: '1',
+        name: '管理员管理',
+        children: [],
+      },
+      {
+        id: '8',
+        pid: '1',
+        name: '角色管理',
+        children: [],
+      },
+    ],
+  },
+];
+
+export const MOCK_ROLES_OWN_MENU = ['1', '9', '8'];
+
+export const MOCK_ROLE_LIST = Array.from({ length: 10 }).map(() => ({
+  id: faker.string.uuid(),
+  name: faker.commerce.product(),
+  remark: faker.lorem.sentence(),
+  status: faker.helpers.arrayElement([0, 1]),
+  userCnt: faker.number.int({ min: 0, max: 6 }),
+}));
+
+export const MOCK_USER_ACCOUNT_LIST = Array.from({ length: 30 }).map(() => {
+  return {
+    userId: faker.string.uuid(),
+    accountState: faker.helpers.arrayElement([0, 1]),
+    bindPhone: `139${faker.number.int({ min: 10_000_000, max: 99_999_999 })}`,
+    nickName: faker.internet.username(),
+    roles: faker.helpers.arrayElements(MOCK_ROLE_LIST, { min: 1, max: 4 }),
+  };
+});

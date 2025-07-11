@@ -18,6 +18,10 @@
       "types": "./src/echarts/index.ts",
       "default": "./src/echarts/index.ts"
     },
+    "./enums": {
+      "types": "./src/enums/index.ts",
+      "default": "./src/enums/index.ts"
+    },
     "./vxe-table": {
       "types": "./src/vxe-table/index.ts",
       "default": "./src/vxe-table/index.ts"

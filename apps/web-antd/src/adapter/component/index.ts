@@ -61,6 +61,8 @@ const TreeSelect = defineAsyncComponent(
 );
 const Upload = defineAsyncComponent(() => import('ant-design-vue/es/upload'));
 
+const BasicTree = defineAsyncComponent(() => import('./BasicTree.vue'));
+
 const withDefaultPlaceholder = <T extends Component>(
   component: T,
   type: 'input' | 'select',
@@ -98,6 +100,7 @@ const withDefaultPlaceholder = <T extends Component>(
 // 这里需要自行根据业务组件库进行适配，需要用到的组件都需要在这里类型说明
 export type ComponentType =
   | 'ApiSelect'
+  | 'ApiTree'
   | 'ApiTreeSelect'
   | 'AutoComplete'
   | 'Checkbox'
@@ -155,6 +158,21 @@ async function initComponentAdapter() {
         modelPropName: 'value',
         optionsPropName: 'treeData',
         visibleEvent: 'onVisibleChange',
+      },
+    ),
+    ApiTree: withDefaultPlaceholder(
+      {
+        ...ApiComponent,
+        name: 'ApiTree',
+      },
+      'select',
+      {
+        component: BasicTree,
+        fieldNames: { title: 'label', key: 'value', children: 'children' },
+        loadingSlot: 'default',
+        modelPropName: 'checkedKeys',
+        optionsPropName: 'treeData',
+        immediate: true,
       },
     ),
     AutoComplete,
