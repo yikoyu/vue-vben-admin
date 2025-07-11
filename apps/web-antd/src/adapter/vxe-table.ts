@@ -3,8 +3,9 @@ import type { VxeTableGridOptions } from '@vben/plugins/vxe-table';
 import { h } from 'vue';
 
 import { setupVbenVxeTable, useVbenVxeGrid } from '@vben/plugins/vxe-table';
+import { get, set } from '@vben/utils';
 
-import { Button, Image } from 'ant-design-vue';
+import { Button, Image, Switch } from 'ant-design-vue';
 
 import { useVbenForm } from './form';
 
@@ -56,6 +57,41 @@ setupVbenVxeTable({
           { size: 'small', type: 'link' },
           { default: () => props?.text },
         );
+      },
+    });
+
+    // 表格配置项可以用 cellRender: { name: 'CellSwitch' },
+    vxeUI.renderer.add('CellSwitch', {
+      renderTableDefault(renderOpts, params) {
+        const { column, row, $grid } = params;
+        const { props, events } = renderOpts;
+
+        const checked = get(row, column.field);
+
+        return h(Switch, {
+          checked,
+          size: 'small',
+          ...props,
+          loading: row._X_ROW_LOADING,
+          'onUpdate:checked': async (value) => {
+            row._X_ROW_LOADING = true;
+            set(row, column.field, value);
+
+            try {
+              // 调用自定义的 onChange 方法
+              await events?.onChange?.(params, {
+                value,
+                oldValue: checked,
+              });
+
+              $grid?.commitProxy('reload');
+            } catch {
+              set(row, column.field, checked);
+            } finally {
+              row._X_ROW_LOADING = false;
+            }
+          },
+        });
       },
     });
 

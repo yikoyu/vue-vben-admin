@@ -84,6 +84,8 @@ const PreviewGroup = defineAsyncComponent(() =>
   import('ant-design-vue/es/image').then((res) => res.ImagePreviewGroup),
 );
 
+const BasicTree = defineAsyncComponent(() => import('./BasicTree.vue'));
+
 const withDefaultPlaceholder = <T extends Component>(
   component: T,
   type: 'input' | 'select',
@@ -332,6 +334,7 @@ const previewImage = async (
 export type ComponentType =
   | 'ApiCascader'
   | 'ApiSelect'
+  | 'ApiTree'
   | 'ApiTreeSelect'
   | 'AutoComplete'
   | 'Cascader'
@@ -397,6 +400,21 @@ async function initComponentAdapter() {
         modelPropName: 'value',
         optionsPropName: 'treeData',
         visibleEvent: 'onVisibleChange',
+      },
+    ),
+    ApiTree: withDefaultPlaceholder(
+      {
+        ...ApiComponent,
+        name: 'ApiTree',
+      },
+      'select',
+      {
+        component: BasicTree,
+        fieldNames: { title: 'label', key: 'value', children: 'children' },
+        loadingSlot: 'default',
+        modelPropName: 'checkedKeys',
+        optionsPropName: 'treeData',
+        immediate: true,
       },
     ),
     AutoComplete,
