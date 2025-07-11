@@ -69,8 +69,16 @@ interface HttpResponse<T = any> {
   message: string;
 }
 
+interface HttpResponsePageData<D = any> {
+  /** 列表数据 */
+  items: Array<D>;
+  /** 总条目数 */
+  total: number;
+}
+
 export type {
   HttpResponse,
+  HttpResponsePageData,
   MakeErrorMessageFn,
   RequestClientConfig,
   RequestClientOptions,
