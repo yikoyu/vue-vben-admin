@@ -46,7 +46,14 @@
     "tailwindcss": "^3.4.3"
   },
   "dependencies": {
-    "@iconify/json": "catalog:",
+    "@iconify-json/ant-design": "catalog:",
+    "@iconify-json/bx": "catalog:",
+    "@iconify-json/carbon": "catalog:",
+    "@iconify-json/ic": "catalog:",
+    "@iconify-json/ion": "catalog:",
+    "@iconify-json/logos": "catalog:",
+    "@iconify-json/lucide": "catalog:",
+    "@iconify-json/mdi": "catalog:",
     "@iconify/tailwind": "catalog:",
     "@manypkg/get-packages": "catalog:",
     "@tailwindcss/nesting": "catalog:",
