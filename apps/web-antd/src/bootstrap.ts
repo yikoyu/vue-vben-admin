@@ -2,6 +2,7 @@ import { createApp, watchEffect } from 'vue';
 
 import { registerAccessDirective } from '@vben/access';
 import { registerLoadingDirective } from '@vben/common-ui/es/loading';
+import { registerIconifyIcon } from '@vben/icons';
 import { preferences } from '@vben/preferences';
 import { initStores } from '@vben/stores';
 import '@vben/styles';
@@ -33,6 +34,9 @@ async function bootstrap(namespace: string) {
   // });
 
   const app = createApp(App);
+
+  // 注册离线图标
+  registerIconifyIcon();
 
   // 注册v-loading指令
   registerLoadingDirective(app, {
