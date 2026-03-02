@@ -12,6 +12,7 @@ export * from './stack';
 export * from './state-handler';
 export * from './to';
 export * from './tree';
+export * from './tree-relation';
 export * from './unique';
 export * from './update-css-variables';
 export * from './util';

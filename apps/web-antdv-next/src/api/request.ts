@@ -19,6 +19,8 @@ import { useAuthStore } from '#/store';
 
 import { refreshTokenApi } from './core';
 
+export type { HttpResponsePageData } from '@vben/request';
+
 const { apiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
 
 function createRequestClient(baseURL: string, options?: RequestClientOptions) {
