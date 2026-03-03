@@ -9,6 +9,7 @@ packages:
   - packages/effects/*
   - packages/business/*
   - apps/*
+  - microapps/*
   - scripts/*
   - docs
   - playground
@@ -148,6 +149,7 @@ catalog:
   prettier: ^3.8.1
   prettier-plugin-tailwindcss: ^0.7.2
   publint: ^0.3.17
+  qiankun: ^2.10.16
   qrcode: ^1.5.4
   qs: ^6.14.1
   reka-ui: ^2.7.0
@@ -184,6 +186,7 @@ catalog:
   vite-plugin-html: ^3.2.2
   vite-plugin-lazy-import: ^1.0.7
   vite-plugin-pwa: ^1.2.0
+  vite-plugin-qiankun: ^1.0.15
   vite-plugin-vue-devtools: ^8.0.5
   vitepress: ^1.6.4
   vitepress-plugin-group-icons: ^1.7.1
@@ -201,3 +204,12 @@ catalog:
   yaml-eslint-parser: ^1.3.2
   zod: ^3.25.76
   zod-defaults: 0.1.3
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - core-js
+  - esbuild
+  - lefthook
+  - less
+  - unrs-resolver
+  - vue-demi

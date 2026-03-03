@@ -61,6 +61,10 @@
       "path": "internal/vite-config",
     },
     {
+      "name": "@microapps/subapp-vue",
+      "path": "microapps/subapp-vue",
+    },
+    {
       "name": "@vben-core/design",
       "path": "packages/@core/base/design",
     },
